@@ -1,0 +1,159 @@
+===
+YOU MUST NOT POST THIS ASSIGNMENT ANY WHERE
+YOU MUST NOT FORWARD THIS ASSIGNMENT TO ANYONE
+The solution for this assignment must be yours.
+===
+Classic MapReduce Assignment
+===
+This is your first assignment; I will 
+discuss this assignment in details on 
+Monday, September 30, 2019.
+===
+Assignment 1: 50 points
+Assigned Date: September 28, 2019.
+Due Date: BEGINNING of the class, October 7, 2019 
+===
+IMPORTANT NOTE: 
+   Assignments will be collected at the 
+   BEGINNING of the class:
+      MSIS 2627-01 (92426) MW 5:45:00 PM 
+      MSIS 2627-02 (92427) MW 7:35:00 PM 
+   If you deliver your assignment at the 
+   middle or end of the class, then 10 
+   points will be deducted. No exceptions!
+===
+Input Data Format: Your data is comprised 
+of a set of records, where each record 
+contains describes a single movie rating:
+
+<user_id><,><movie_id><,><rating>
+
+where valid rating is an integer in {1, 2, 3, 4, 5}
+
+valid checking
+
+Input Example (2 records):
+
+U1,M4,4
+U8,M5,3
+
+
+===
+Input:
+
+You MUST use the following input for answering
+all questions of this assignment.
+
+U1,M4,4
+U1,M4,3
+U1,M2,5
+U1,M2,0
+U1,M3,2
+U2,M4,3
+U2,M4,4
+U2,M4,5
+U3,M1,1
+U3,M5,6
+U3,M4,4
+U3,M4,5
+U4,M2,3
+U4,M1,1
+U4,M1,4
+U4,M1,5
+
+You MUST use the input provided. If you use 
+any other input, your grade will be zero.
+
+====
+Generic Solution
+
+NOTE-1: If a given record has a invalid rating,
+        then that record is dropped from all
+        calculations 
+
+NOTE-2: There are 16 records to be processed 
+        by your MapReduce program, BUT your 
+        solution has to be generic and should 
+        be able to handle billions of records
+
+===
+Expected output: 
+
+The order of (key, value) output records 
+are not important at all.
+
+output: 5 rows, not sorting
+
+key            value
+===            =====
+(<movie_id>,  (total_number_of_raters, unique_number_of_raters))
+
+For example, for movie_id M4, your output will be:
+
+(M4, (7, 3))
+
+Since M4 is rated 7 times by 3 unique users.
+
+===
+MapReduce Solution:
+
+1. For this assignment, your MapReduce program 
+   is comprised of two functions 
+      Mapper: map()
+      Reducer: reduce()
+
+Your MapReduce Solution must be a generic 
+solution and work for any size data. But you 
+will show your MapReduce solution step-by-step 
+(as I presented in class) with the input 
+provided.
+
+Apply map() and reduce() for the given Input  
+and show your work in detail (step-by-step)   
+
+2. Input for your map() will be a pair of 
+   (key, value) where key is the record 
+   number and value is a single record of input; 
+   for example the first record will be passed 
+   to a map() function as
+   
+   (1, "U1,M4,4")
+
+   the second record will be passed to a map() 
+   function as
+   
+   (2, "U1,M4,3"), 
+   
+   and so on...
+   
+2.1 Identify all mappers input
+2.2 Identify all mappers output
+
+3. What does sort() and shuffle() do to 
+the output of mappers? MUST show your work. 
+All of your work
+
+input & output
+
+4. Identify (Key, Value) for reducers 
+
+4.1 Identify all input to reducers
+4.2 Identify all output of reducers
+
+===
+Delivery mechanism:
+
+* Use a basic Text Editor (no PDF, 
+  no WORD document)
+  
+* Hand-written solution will not be accepted
+
+* Your solution should make sense by a 
+  high school Freshman!
+  
+* Write clear and neat!
+
+* Deliver your solution on a printed paper 
+  (using Basic Text Editor) 
+  
+* Include your name (Last name,  First name).

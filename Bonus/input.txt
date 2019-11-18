@@ -1,0 +1,8 @@
+A,x,v1
+A,x,v2
+A,y,v3
+A,y,v4
+A,z,v5
+B,x,v6
+B,y,v7
+B,p,v8

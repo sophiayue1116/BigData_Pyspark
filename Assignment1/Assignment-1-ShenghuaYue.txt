@@ -1,0 +1,66 @@
+Name: Yue, Shenghua
+
+Solution:
+
+mapper inputs: 
+(1, "U1,M4,4")
+(2, "U1,M4,3")
+(3, "U1,M2,5")
+(4, "U1,M2,0")
+(5, "U1,M3,2")
+(6, "U2,M4,3")
+(7, "U2,M4,4")
+(8, "U2,M4,5")
+(9, "U3,M1,1")
+(10, "U3,M5,6")
+(11, "U3,M4,4")
+(12, "U3,M4,5")
+(13, "U4,M2,3")
+(14, "U4,M1,1")
+(15, "U4,M1,4")
+(16, "U4,M1,5")
+
+map(key, value):
+  user, movie, rate = value.split(",")
+  valid_rate = [1,2,3,4,5]
+  if int(rate) in valid_rate:
+     emit(movie, (user, 1))
+     
+mapper outputs / inputs of sort & shuffle: 
+(M4, ("U1",1))
+(M4, ("U1",1))
+(M2, ("U1",1))
+(M3, ("U1",1))
+(M4, ("U2",1))
+(M4, ("U2",1))
+(M4, ("U2",1))
+(M1, ("U3",1))
+(M4, ("U3",1))
+(M4, ("U3",1))
+(M2, ("U4",1))
+(M1, ("U4",1))
+(M1, ("U4",1))
+(M1, ("U4",1))
+
+outputs of sort & shuffle / inputs of reducers (key, value), value is the iterable tuples:
+(M1, [("U3",1),("U4",1),("U4",1),("U4",1)])
+(M2, [("U4",1),("U1",1)])
+(M3, [("U1",1)])
+(M4, [("U2",1),("U2",1),("U2",1),("U1",1),("U1",1),("U3",1),("U3",1)])
+
+In the reducer, use set() data structure to store unique users 
+reduce(key, value):
+   count_all = 0
+   count_uni_set = set()
+   for v in value:
+      count_all += 1
+      count_uni_set.add(v[0])
+   count_uni = len(count_uni_set)
+   emit(key, (count_all, count_uni))
+   
+reducer outputs:
+(M1, (4, 2))
+(M2, (2, 2))
+(M3, (1, 1))
+(M4, (7, 3))
+
